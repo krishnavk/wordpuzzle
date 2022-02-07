@@ -1,0 +1,15 @@
+{
+    "crostiny-clues": [
+        {
+            "Theme": "Warmup",
+            "Puzzle no": 1,
+            "enum": 7,
+            "Attempt1Clue": "Possibly quite an old item",
+            "Attempt2Clue": "Possibly quite an OLD ITEM",
+            "Attempt3Clue": "relic",
+            "Attempt4Clue": "A _ _ _ _ _ E",
+            "correctanswer": "ANTIQUE",
+            "answerexplanation": "Type of Clue - Anagram. Anagram (indicated by POSSIBLY) of QUITEAN gives ANTIQUE which means old item"
+        }
+    ]
+}

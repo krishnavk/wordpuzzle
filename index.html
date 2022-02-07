@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crostiny</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://kit.fontawesome.com/940f327624.js" crossorigin="anonymous"></script>
+    <script src="html2canvas.min.js"></script>
+    <script xmlns="http://www.w3.org/1999/xhtml" async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/copy-to-clipboard-ultralight" async></script>
+</head>
+
+<body>
+    <div class="game-box">
+        <header>
+            <div class="theme"></div>
+            <div class="puzzle-num"></div>
+            <div class="hearts"></div>
+        </header>
+        <section>
+            <div class="clue-list"></div>
+            <div class="user-input">
+                <div class="user-text"></div>
+                <button class="submit" onclick="verifyEndGame()">Submit</button>
+                <div class="endMessage hide">
+                    <span class="endMessageText"></span><button class="share" onclick="copyImage()">Share</button>
+                    <div class="helpMessage small-font red">Share button will download and copy the image</div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="explanation hide"></div>
+        </footer>
+    </div>
+    <div class="shareImage" id="shareImage">
+        <div class="imageTitle"><image src="crostiny.jpeg"></image></div>
+        <div class="themeImage"></div>
+        <div class="puzzuleNumIamge"></div>
+        <div class="clueImage"></div>
+        <div class="resultImage"></div>
+        <div class="try" contenteditable="true" readonly="false"></div>
+    </div>
+    </div>
+</body>
+<script src="crostiny.js"></script>
+
+</html>

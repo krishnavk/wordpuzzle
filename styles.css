@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #fff;
+}
+
+.red {
+  color: red;
+}
+
+.grey {
+  color: gray;
+}
+
+.coral {
+  color: lightcoral;
+}
+
+.yellow {
+  color: goldenrod;
+}
+
+.blue {
+  color: #007bff;
+}
+
+.game-box {
+  /* position: absolute;
+    top: 50%;
+    left: 50%; */
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  border-radius: 5px;
+  /* transform: translate(-50%, -50%) scale(0.9); */
+  /* transition: all 0.3s ease; */
+}
+
+.game-box header {
+  position: relative;
+  z-index: 2;
+  height: 10%;
+  padding: 0 30px;
+  background: #fff;
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgrey;
+}
+
+.game-box header .theme {
+  width: 33%;
+}
+
+.game-box header .puzzle-num {
+  width: 33%;
+  text-align: center;
+}
+
+.game-box header .hearts {
+  width: 33%;
+  text-align: end;
+}
+
+section {
+  padding: 25px 30px 20px 30px;
+  background: #fff;
+  height: 75%;
+}
+
+section .clue-list {
+  padding: 20px 0px;
+  display: block;
+  min-height: 75%;
+}
+
+section .clue-list .clue {
+  background: aliceblue;
+  border: 1px solid #84c5fe;
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section .clue-list .clue:last-child {
+  margin-bottom: 0px;
+}
+
+section .user-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section .user-input .user-text {
+  display: flex;
+  /* padding: 20px 0px; */
+  text-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+section .user-input .user-text .square {
+  border-radius: 5px;
+  border: 1px solid lightslategrey;
+  height: 40px;
+  width: 100%;
+  margin-right: 4px;
+  margin-bottom: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 6px;
+  cursor: none;
+}
+
+section .user-input .user-text .square:last-child {
+  margin-right: 0px;
+}
+
+button {
+  height: 40px;
+  width: fit-content;
+  padding: 0 13px;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 5px;
+  background: #007bff;
+  border: 1px solid #007bff;
+  line-height: 10px;
+  opacity: 1;
+  cursor: pointer;
+}
+
+footer {
+  height: 15%;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid lightgrey;
+}
+
+.endMessageText {
+  padding: 0px 20px;
+  font-size: 32px;
+  vertical-align: middle;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.shareImage {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px 30px;
+  top: -1000px;
+  left: -1000px;
+  position: absolute;
+}
+
+.imageTitle {
+  text-align: center;
+  width: 300px;
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 15px;
+}
+
+image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.themeImage .puzzuleNumIamge .clueImage .resultImage {
+  display: flex;
+  justify-self: center;
+  align-content: center;
+}
+
+.small-font {
+  font-size: 12px
+}
+.submit {
+  margin-top: 4px;
+}
