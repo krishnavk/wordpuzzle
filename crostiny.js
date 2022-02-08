@@ -6,6 +6,8 @@ let gameInstance = {
   status: "Failed",
 };
 
+const inputText;
+
 fetchGameData = async () => {
   const res = await fetch("gameData.json");
   if (res.status === 200) {
@@ -35,7 +37,10 @@ onLoad = async () => {
     ".user-text",
     "string"
   );
+  inputText = getDOMElementByQuerySelector('#text-entered')
 };
+
+inputText.addEventListener('keyup', (event) => event.target.value = event.target.value.substring(0, gameInstance.gameData.enum))
 
 printHearts = () => {
   return iterateElement(
@@ -44,7 +49,7 @@ printHearts = () => {
     gameInstance.triesLeft
   ).map((ele) => ele.outerHTML);
 };
-
+E
 printStars = () => {
   return iterateElement(
     '<i class="fas fa-star coral"></i>',
@@ -114,6 +119,10 @@ getValueOfDOMElement = (element, type) => {
   }
 };
 
+getDOMElementByQuerySelector = (element) => {
+ return document.querySelector(element).value;
+}
+
 verifyEndGame = () => {
   showDOMElement(".explanation");
   if (
@@ -136,7 +145,7 @@ showSuccessMsg = () => {
   buildImage();
   hideDOMElement(".submit");
   showDOMElement(".endMessage");
-  updateDOM("Congrats", ".endMessageText", "string");
+  updateDOM("Congrats!!!", ".endMessageText", "string");
   addClassToDOMElement(".endMessageText", "coral");
   showExplanation();
 };
