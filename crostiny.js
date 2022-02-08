@@ -47,7 +47,7 @@ printHearts = () => {
     gameInstance.triesLeft
   ).map((ele) => ele.outerHTML);
 };
-E
+
 printStars = () => {
   return iterateElement(
     '<i class="fas fa-star coral"></i>',
