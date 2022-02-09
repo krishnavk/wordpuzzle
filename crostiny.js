@@ -58,7 +58,7 @@ printOptions = () => {
   return iterateElement(
     "<div class='clue'></div>",
     "clues",
-    gameInstance.clues.length - gameInstance.triesLeft + 1
+    gameInstance.clues.length
   ).map((ele, index) => {
     ele.innerHTML = gameInstance.clues[index];
     return ele.outerHTML;
