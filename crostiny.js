@@ -35,8 +35,6 @@ onLoad = async () => {
     ".user-text",
     "string"
   );
-  const inputText = getDOMElementByQuerySelector('#text-entered')
-  inputText.addEventListener('keyup', (event) => event.target.value = event.target.value.substring(0, gameInstance.gameData.enum))
 };
 
 

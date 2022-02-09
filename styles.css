@@ -113,7 +113,6 @@ section .user-input .user-text {
 }
 
 section .user-input .user-text .square {
-  border-radius: 5px;
   border: 1px solid lightslategrey;
   height: 40px;
   width: 100%;
@@ -202,4 +201,16 @@ image {
 }
 .submit {
   margin-top: 4px;
+}
+
+input[type="text"] {
+  /* enlarge by 16/12 = 133.33% */
+  border-radius: 6.666666667px;
+  font-size: 16px;
+  line-height: 26.666666667px;
+  padding: 6.666666667px;
+  width: 145.555555%;
+
+  /* scale down by 12/16 = 75% */
+  transform: scale(0.69);
 }
