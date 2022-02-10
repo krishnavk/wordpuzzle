@@ -109,14 +109,15 @@ section .user-input .user-text {
   text-align: center;
   justify-content: center;
   /* flex-wrap: wrap; */
-  width: 100%;
+  /* width: 100%; */
   flex-direction: column;
 }
 
 section .user-input .user-text .square {
   border: 1px solid lightslategrey;
+  border-radius: 6.666666667px;
   height: 40px;
-  /* width: 100%; */
+  width: 100%;
   margin-right: 4px;
   margin-bottom: 2px;
   text-align: center;
@@ -208,19 +209,26 @@ image {
   * To avoid zoom on iOS
   * ref: https://thingsthemselves.com/no-input-zoom-in-safari-on-iphone-the-pixel-perfect-way/
 */
-input[type="text"] {
-  /* enlarge by 16/11 = 145.55% */
-  border-radius: 6.666666667px;
-  font-size: 16px;
-  line-height: 26.666666667px;
-  padding: 6.666666667px;
-  width: 145.555555%;
 
-  /* scale down by 11/16 = 69% */
-  transform: scale(0.69);
-  transform-origin: left top;
+@media only screen and (max-width: 768px) {
+  .game-box {
+    height: 77vh;
+  }
 
-  /* remove extra white space */
-  margin-bottom: -10px;
-  margin-right: -33.333333333%;
+  input[type="text"] {
+    /* enlarge by 16/11 = 145.55% */
+    border-radius: 6.666666667px;
+    font-size: 16px;
+    line-height: 26.666666667px;
+    padding: 6.666666667px;
+    width: 145.555555% !important;
+  
+    /* scale down by 11/16 = 69% */
+    transform: scale(0.69);
+    transform-origin: left top;
+  
+    /* remove extra white space */
+    margin-bottom: -10px;
+    margin-right: -33.333333333%;
+  }
 }
