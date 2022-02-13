@@ -69,13 +69,13 @@ body {
 }
 
 section {
-  padding: 25px 30px 20px 30px;
+  padding: 20px 35px 0px 20px;
   background: #fff;
-  height: 75%;
+  height: 55%;
 }
 
 section .clue-list {
-  padding: 20px 0px;
+  padding: 10px 0px 20px 0px;
   display: block;
   min-height: 75%;
 }
@@ -109,7 +109,7 @@ section .user-input .user-text {
   text-align: center;
   justify-content: center;
   /* flex-wrap: wrap; */
-  /* width: 100%; */
+  width: 80%;
   flex-direction: column;
 }
 
@@ -154,6 +154,11 @@ footer {
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid lightgrey;
+}
+
+.endMessage {
+  width: 100%;
+  text-align: center;
 }
 
 .endMessageText {
@@ -205,30 +210,57 @@ image {
   margin-top: 4px;
 }
 
+.gameKeyBoard {
+  padding: 0px 15px 0px 0px;
+  /* height: 30%; */
+  display:contents;
+}
+
+.key-container {
+  width: 100%;
+  text-align: center;
+  padding-right: 15px;
+}
+
+.key-container button {
+  width: 43px;
+  height: 58px;
+  border-radius: 4px;
+  border: none;
+  background-color: #818384;
+  margin: 4px;
+  padding: 0px;
+}
+
+.row3 button:first-child,
+.row3 button:last-child {
+  width: 68px;
+}
+
+
 /*
   * To avoid zoom on iOS
   * ref: https://thingsthemselves.com/no-input-zoom-in-safari-on-iphone-the-pixel-perfect-way/
 */
 
 @media only screen and (max-width: 768px) {
-  .game-box {
-    height: 77vh;
+  section {
+    height: 55%;
   }
 
-  input[type="text"] {
-    /* enlarge by 16/11 = 145.55% */
-    border-radius: 6.666666667px;
-    font-size: 16px;
-    line-height: 26.666666667px;
-    padding: 6.666666667px;
-    width: 145.555555% !important;
-  
-    /* scale down by 11/16 = 69% */
-    transform: scale(0.69);
-    transform-origin: left top;
-  
-    /* remove extra white space */
-    margin-bottom: -10px;
-    margin-right: -33.333333333%;
+  .key-container button {
+    width: 24px;
+    height: 32px;
+    border-radius: 4px;
+    border: none;
+    background-color: #818384;
+    margin: 4px;
+    font-size: 12px;
+    padding: 0px;
+  }
+
+  .row3 button:first-child,
+  .row3 button:last-child {
+    width: 48px;
   }
 }

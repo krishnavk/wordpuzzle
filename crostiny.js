@@ -1,12 +1,17 @@
 let gameInstance = {
   gameData: {},
   triesLeft: 0,
+  enteredAnswer: [],
   wrongAnswers: [],
   clues: [],
   status: "Failed",
 };
 
-fetchGameData = async () => {
+const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
+const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+const row3 = ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "«"];
+
+const fetchGameData = async () => {
   const res = await fetch("gameData.json");
   if (res.status === 200) {
     return await res.json();
@@ -15,7 +20,7 @@ fetchGameData = async () => {
   }
 };
 
-onLoad = async () => {
+const onLoad = async () => {
   const data = await fetchGameData();
   gameInstance.gameData = data["crostiny-clues"][0];
   gameInstance.clues = Object.keys(gameInstance.gameData)
@@ -31,14 +36,62 @@ onLoad = async () => {
   updateDOM(printHearts(), ".hearts", "array");
   updateDOM(printOptions(), ".clue-list", "array");
   updateDOM(
-    `<input class='square' id='text-entered' type='text' maxlength='${gameInstance.gameData.enum}' autofocus/><span class='grey small-font'>(${gameInstance.gameData.enum} letters)</span>`,
+    `<span class='square'></span><span class='grey small-font'>(${gameInstance.gameData.enum} letters)</span>`,
     ".user-text",
     "string"
   );
+  printKeyBoard();
 };
 
+const printKeyBoard = () => {
+  row1.forEach((key) => {
+    const buttonElement = createDOMElement("button");
+    buttonElement.textContent = key;
+    buttonElement.setAttribute("id", key);
+    buttonElement.addEventListener("click", () => handleClick(key));
+    updateDOM(buttonElement, ".row1", "list");
+  });
+  row2.forEach((key) => {
+    const buttonElement = createDOMElement("button");
+    buttonElement.textContent = key;
+    buttonElement.setAttribute("id", key);
+    buttonElement.addEventListener("click", () => handleClick(key));
+    updateDOM(buttonElement, ".row2", "list");
+  });
+  row3.forEach((key) => {
+    const buttonElement = createDOMElement("button");
+    buttonElement.textContent = key;
+    buttonElement.setAttribute("id", key);
+    buttonElement.addEventListener("click", () => handleClick(key));
+    updateDOM(buttonElement, ".row3", "list");
+  });
+};
 
-printHearts = () => {
+const handleClick = (letter) => {
+  if (letter === "«") {
+    deleteLetter();
+  } else if (letter === "ENTER") {
+    verifyEndGame();
+  } else {
+    addLetter(letter);
+  }
+};
+
+const deleteLetter = () => {
+  if (gameInstance.enteredAnswer.length) {
+    gameInstance.enteredAnswer.pop()
+    resetSquare();
+  }
+}
+
+const addLetter = (letter) => {
+  if (gameInstance.enteredAnswer.length < gameInstance.gameData.enum) {
+    gameInstance.enteredAnswer.push(letter)
+    resetSquare();
+  }
+}
+
+const printHearts = () => {
   return iterateElement(
     '<i class="fas fa-heart red"></i>',
     "hearts",
@@ -46,7 +99,7 @@ printHearts = () => {
   ).map((ele) => ele.outerHTML);
 };
 
-printStars = () => {
+const printStars = () => {
   return iterateElement(
     '<i class="fas fa-star coral"></i>',
     "stars",
@@ -54,7 +107,7 @@ printStars = () => {
   ).map((ele) => ele.outerHTML);
 };
 
-printOptions = () => {
+const printOptions = () => {
   return iterateElement(
     "<div class='clue'></div>",
     "clues",
@@ -65,7 +118,7 @@ printOptions = () => {
   });
 };
 
-iterateElement = (element, selector, times) => {
+const iterateElement = (element, selector, times) => {
   let elementArray = new Array(times).fill(element);
   let parser = new DOMParser();
   return elementArray.map((ele, index) => {
@@ -76,12 +129,11 @@ iterateElement = (element, selector, times) => {
   });
 };
 
-resetSquares = () => {
-  document.querySelector("#text-entered").value = "";
-  document.querySelector("#text-entered").focus();
+const resetSquare = () => {
+  updateDOM(gameInstance.enteredAnswer.join(""), '.square', 'string')
 };
 
-updateDOM = (data, element, type) => {
+const updateDOM = (data, element, type) => {
   switch (type) {
     case "string":
       document.querySelector(element).innerHTML = data;
@@ -89,24 +141,31 @@ updateDOM = (data, element, type) => {
     case "array":
       document.querySelector(element).innerHTML = data.join(" ");
       break;
+    case "list":
+      document.querySelector(element).append(data);
+      break;
   }
 };
 
-showDOMElement = (element) => {
+const createDOMElement = (element) => {
+  return document.createElement(element)
+}
+
+const showDOMElement = (element) => {
   document.querySelector(element).classList.remove("hide");
   document.querySelector(element).classList.add("show");
 };
 
-hideDOMElement = (element) => {
+const hideDOMElement = (element) => {
   document.querySelector(element).classList.remove("show");
   document.querySelector(element).classList.add("hide");
 };
 
-addClassToDOMElement = (element, className) => {
+const addClassToDOMElement = (element, className) => {
   document.querySelector(element).classList.add(className);
 };
 
-getValueOfDOMElement = (element, type) => {
+const getValueOfDOMElement = (element, type) => {
   switch (type) {
     case "value":
       return document.querySelector(element).value;
@@ -115,14 +174,14 @@ getValueOfDOMElement = (element, type) => {
   }
 };
 
-getDOMElementByQuerySelector = (element) => {
- return document.querySelector(element).value;
-}
+const getDOMElementByQuerySelector = (element) => {
+  return document.querySelector(element).value;
+};
 
-verifyEndGame = () => {
+const verifyEndGame = () => {
   showDOMElement(".explanation");
   if (
-    getValueOfDOMElement("#text-entered", "value").toUpperCase() ==
+    gameInstance.enteredAnswer.join("").toUpperCase() ==
     gameInstance.gameData.correctanswer.toUpperCase()
   ) {
     showSuccessMsg();
@@ -136,27 +195,27 @@ verifyEndGame = () => {
   }
 };
 
-showSuccessMsg = () => {
+const showSuccessMsg = () => {
   gameInstance.status = "completed";
   buildImage();
-  hideDOMElement(".submit");
+  hideDOMElement(".key-container");
   showDOMElement(".endMessage");
   updateDOM("Congrats!!!", ".endMessageText", "string");
   addClassToDOMElement(".endMessageText", "coral");
   showExplanation();
 };
 
-showFailureMsg = () => {
+const showFailureMsg = () => {
   buildImage();
   updateDOM(printHearts(), ".hearts", "array");
-  hideDOMElement(".submit");
+  hideDOMElement(".key-container");
   showDOMElement(".endMessage");
   updateDOM("Hard Luck", ".endMessageText", "string");
   addClassToDOMElement(".endMessageText", "red");
   showExplanation();
 };
 
-showExplanation = () => {
+const showExplanation = () => {
   if (gameInstance.gameData.answerexplanation) {
     updateDOM(
       `Answer Explanation: ${gameInstance.gameData.answerexplanation}`,
@@ -166,11 +225,12 @@ showExplanation = () => {
   }
 };
 
-continueGameAndShowNextOption = () => {
+const continueGameAndShowNextOption = () => {
   gameInstance.wrongAnswers.push(
-    getValueOfDOMElement("#text-entered", "value").toUpperCase()
+    gameInstance.enteredAnswer.join("").toUpperCase()
   );
-  resetSquares();
+  gameInstance.enteredAnswer = []
+  resetSquare();
   updateDOM(printOptions(), ".clue-list", "array");
   updateDOM(printHearts(), ".hearts", "array");
   if (gameInstance.wrongAnswers.length) {
@@ -182,7 +242,7 @@ continueGameAndShowNextOption = () => {
   }
 };
 
-buildImage = () => {
+const buildImage = () => {
   updateDOM(`Theme: ${gameInstance.gameData.Theme}`, ".themeImage", "string");
   updateDOM(
     `Puzzle Number: ${gameInstance.gameData["Puzzle no"]}`,
@@ -205,7 +265,7 @@ buildImage = () => {
   );
 };
 
-copyImage = () => {
+const copyImage = () => {
   html2canvas(document.querySelector(".shareImage"), {
     width: 350,
     height: 200,
