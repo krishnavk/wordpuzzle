@@ -156,8 +156,6 @@ footer {
   height: 15%;
   padding: 0 30px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   border-top: 1px solid lightgrey;
 }
 
@@ -249,11 +247,6 @@ image {
 */
 
 @media only screen and (max-width: 768px) {
-
-  .game-box {
-    height: 90vh;
-  }
-
   section {
     height: 55%;
   }
