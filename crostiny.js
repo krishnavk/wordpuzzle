@@ -9,7 +9,7 @@ let gameInstance = {
 
 const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
 const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
-const row3 = ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "«"];
+const row3 = ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "DEL"];
 
 const fetchGameData = async () => {
   const res = await fetch("gameData.json");
@@ -68,7 +68,7 @@ const printKeyBoard = () => {
 };
 
 const handleClick = (letter) => {
-  if (letter === "«") {
+  if (letter === "DEL") {
     deleteLetter();
   } else if (letter === "ENTER") {
     verifyEndGame();
