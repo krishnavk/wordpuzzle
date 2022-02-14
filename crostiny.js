@@ -241,10 +241,10 @@ const continueGameAndShowNextOption = () => {
   addClassToDOMElement('.square', 'error')
   setTimeout(() => {
     if(hasClassOnDOMElement('.user-text', 'shake') && hasClassOnDOMElement('.square', 'error')){
-      deleteClassOnDOMElement('.user-text', 'shake')
-      deleteClassOnDOMElement('.square', 'error')
       gameInstance.enteredAnswer = []
       resetSquare();
+      deleteClassOnDOMElement('.user-text', 'shake')
+      deleteClassOnDOMElement('.square', 'error')
     }
   }, 500);
   updateDOM(printOptions(), ".clue-list", "array");
