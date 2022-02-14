@@ -214,6 +214,13 @@ const showSuccessMsg = () => {
 };
 
 const showFailureMsg = () => {
+  addClassToDOMElement('.user-text', 'shake')
+  addClassToDOMElement('.square', 'error')
+  setTimeout(() => {
+    if(hasClassOnDOMElement('.user-text', 'shake')){
+      deleteClassOnDOMElement('.user-text', 'shake')
+    }
+  }, 500);
   buildImage();
   updateDOM(printHearts(), ".hearts", "array");
   hideDOMElement(".key-container");
