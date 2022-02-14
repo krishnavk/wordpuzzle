@@ -127,6 +127,11 @@ section .user-input .user-text .square {
   box-shadow: inset 0 0 0 2px lightblue;
 }
 
+section .user-input .user-text .error{
+  border: 1px solid lightcoral;
+  box-shadow: inset 0 0 0 2px red;
+}
+
 section .user-input .user-text .square:last-child {
   margin-right: 0px;
 }
@@ -146,10 +151,6 @@ button {
   line-height: 10px;
   opacity: 1;
   cursor: pointer;
-}
-
-.highlight {
-  border: 1px solid lightyellow;
 }
 
 footer {
@@ -238,6 +239,31 @@ image {
 .row3 button:first-child,
 .row3 button:last-child {
   width: 68px;
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
 
 

@@ -165,6 +165,14 @@ const addClassToDOMElement = (element, className) => {
   document.querySelector(element).classList.add(className);
 };
 
+const deleteClassOnDOMElement = (element, className) => {
+  document.querySelector(element).classList.remove(className);
+};
+
+const hasClassOnDOMElement = (element, className) => {
+  return document.querySelector(element).classList.contains(className);
+};
+
 const getValueOfDOMElement = (element, type) => {
   switch (type) {
     case "value":
@@ -229,8 +237,16 @@ const continueGameAndShowNextOption = () => {
   gameInstance.wrongAnswers.push(
     gameInstance.enteredAnswer.join("").toUpperCase()
   );
-  gameInstance.enteredAnswer = []
-  resetSquare();
+  addClassToDOMElement('.user-text', 'shake')
+  addClassToDOMElement('.square', 'error')
+  setTimeout(() => {
+    if(hasClassOnDOMElement('.user-text', 'shake') && hasClassOnDOMElement('.square', 'error')){
+      deleteClassOnDOMElement('.user-text', 'shake')
+      deleteClassOnDOMElement('.square', 'error')
+      gameInstance.enteredAnswer = []
+      resetSquare();
+    }
+  }, 500);
   updateDOM(printOptions(), ".clue-list", "array");
   updateDOM(printHearts(), ".hearts", "array");
   if (gameInstance.wrongAnswers.length) {
