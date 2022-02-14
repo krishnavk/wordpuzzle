@@ -114,7 +114,7 @@ section .user-input .user-text {
 }
 
 section .user-input .user-text .square {
-  border: 1px solid lightslategrey;
+  border: 1px solid cornflowerblue;
   border-radius: 6.666666667px;
   height: 40px;
   width: 100%;
@@ -124,6 +124,7 @@ section .user-input .user-text .square {
   text-transform: uppercase;
   padding: 6px;
   cursor: none;
+  box-shadow: inset 0 0 0 2px lightblue;
 }
 
 section .user-input .user-text .square:last-child {
@@ -145,6 +146,10 @@ button {
   line-height: 10px;
   opacity: 1;
   cursor: pointer;
+}
+
+.highlight {
+  border: 1px solid lightyellow;
 }
 
 footer {
@@ -244,6 +249,11 @@ image {
 */
 
 @media only screen and (max-width: 768px) {
+
+  .game-box {
+    height: 90vh;
+  }
+
   section {
     height: 55%;
   }
